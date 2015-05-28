@@ -1,25 +1,21 @@
-var add = function(romanNum) {
+var add = function(num) {
  var numSum = []
 
-  var rValues = {
-    "I" : 1,
-    "V" : 5,
-    "X" : 10,
-    "L" : 50,
-    "C" : 100,
-    "D" : 500,
-    "M" : 1000,
-  };
+  var rValues = [1000,500,100,50,10,5,1]
 
-  var characters = romanNum.split("");
-  characters.forEach(function(character){
-    numSum.push(rValues[character]);
-  });
+  var newNum = num
 
-  var total = 0;
-    numSum.forEach(function(number) {
-    total += number;
+  rValues.forEach(function(value) {
+    var divide = (newNum / value);
+    if (divide >= 1) {
+      numSum.push(value)
+      newNum = (newNum - value);
+    }
+    if (newNum > 0) {
+      divide = (newNum / 1)
+      numSum.push(1)
+      newNum = (newNum - 1);
+    }
   })
-
-    return total;
-};
+    return numSum;
+  };
